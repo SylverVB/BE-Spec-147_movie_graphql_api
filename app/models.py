@@ -9,5 +9,10 @@ class Movie(db.Model):
     genre: Mapped[str] = mapped_column(db.String(50), nullable=False)
     rating: Mapped[float] = mapped_column(db.Float, nullable=True)
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        db.session.add(self)
+        db.session.commit()
+
     def __repr__(self):
         return f"<Movie {self.title}>"
