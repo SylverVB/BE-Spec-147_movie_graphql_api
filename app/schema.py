@@ -69,7 +69,7 @@ class UpdateMovie(graphene.Mutation):
         if director:
             # Set the movie's director to this
             movie.director = director
-        # If there is a email arg
+        # If there is a release_year arg
         if release_year:
             # Set the movie's release_year to this
             movie.release_year = release_year
