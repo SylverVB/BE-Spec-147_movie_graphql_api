@@ -56,7 +56,7 @@ class UpdateMovie(graphene.Mutation):
     movie = graphene.Field(MovieType)
 
     def mutate(root, info, id, title=None, director=None, release_year=None, genre=None, rating=None):
-        # Query for the user with that id
+        # Query for the movie with that id
         movie = db.session.get(MovieModel, id)
         # If that movie does not exist, return None
         if movie is None:
@@ -67,7 +67,7 @@ class UpdateMovie(graphene.Mutation):
             movie.title = title
         # If there is a director arg
         if director:
-            # Set the user's username to this
+            # Set the movie's director to this
             movie.director = director
         # If there is a email arg
         if release_year:
@@ -79,7 +79,7 @@ class UpdateMovie(graphene.Mutation):
             movie.rating = rating
         # Commit the changes to the database
         db.session.commit()
-        # Return the updated user as the "user" field output
+        # Return the updated movie as the "movie" field output
         return UpdateMovie(movie=movie)
 
 class DeleteMovie(graphene.Mutation):
